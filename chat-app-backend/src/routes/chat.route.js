@@ -16,4 +16,9 @@ router.post('/group', userAuth, chatController.createGroupChat);
 //route to rename group chat
 router.put('/rename', userAuth, chatController.renameGroupChat);
 
+//route to add user to group chat
+router.put('/addToGroup', userAuth, chatController.addToGroup);
+
+//route to remove user to group chat
+router.put('/removeFromGroup', userAuth, chatController.removeFromGroup);
 export default router;
