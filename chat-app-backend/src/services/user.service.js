@@ -1,6 +1,23 @@
 import User from '../models/user.model';
 const bcrypt = require('bcrypt');
 import jwt from 'jsonwebtoken';
+
+//get all users
+export const getAllUsers = async (req) => {
+ 
+  const keyword = req.query.search
+    ? {
+        $or: [
+          { fullname: { $regex: req.query.search, $options: "i" } },
+          { email: { $regex: req.query.search, $options: "i" } },
+        ],
+      }
+    : {};
+    console.log(keyword);
+    console.log(req.query);
+  const data = await User.find(keyword).find({_id: {$ne: req.body.userId}})
+  return data;
+};
  
 ///Register new user
 export const userRegister = async (body) => {
