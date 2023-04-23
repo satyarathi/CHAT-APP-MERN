@@ -1,0 +1,13 @@
+.Login-box{
+    margin-top: 100px;
+    cursor: pointer;
+   }
+    
+   @media screen and (max-width: 765px){
+    .form {
+    width: 100%;
+   }
+   .image-box{
+    display: none;
+   }
+   }
