@@ -10,20 +10,28 @@ import jwt from 'jsonwebtoken';
  * @param {Function} next
  */
 export const userAuth = async (req, res, next) => {
-  try {
-    let bearerToken = req.header('Authorization');
-    if (!bearerToken)
-      throw {
-        code: HttpStatus.BAD_REQUEST,
-        message: 'Authorization token is required'
-      };
-    bearerToken = bearerToken.split(' ')[1];
+  let token;
+  if (
+    req.headers.authorization &&
+    req.headers.authorization.startsWith("Bearer")
+  ) {
+    try {
+      token = req.headers.authorization.split(" ")[1];
 
-    const { user } = await jwt.verify(bearerToken, 'your-secret-key');
-    res.locals.user = user;
-    res.locals.token = bearerToken;
-    next();
-  } catch (error) {
-    next(error);
+      //decodes token id
+      const decoded = jwt.verify(token, process.env.JWT_SECRET_KEY);
+          console.log("decoded",decoded)
+      req.body.user =  decoded.id
+
+      next();
+    } catch (error) {
+      res.status(401);
+      throw new Error("Not authorized, token failed");
+    }
+  }
+
+  if (!token) {
+    res.status(401);
+    throw new Error("Not authorized, no token");
   }
 };
