@@ -133,3 +133,74 @@ export const renameGroupChat = async (req) => {
    return updatedChat;
   }
 };
+
+
+// @desc    Add user to Group / Leave
+// @route   PUT /api/chat/groupadd
+// @access  Protected
+export const addToGroup = async (req) => {
+  
+  const { chatId, userId } = req.body;
+  
+  var data = Chat.findById(chatId, (err, chat) => {
+    
+    if (chat.users.includes(userId)) {
+    console.log(`User with id ${userId} is already in chat with id ${chatId}`);
+    return;
+  }
+
+
+else{
+  // check if the requester is admin 
+
+  const addedToGroup = Chat.findByIdAndUpdate(
+    chatId,
+    {
+      $push: { users: userId },
+    },
+    {
+      new: true,
+    }
+  )
+    .populate("users", "-password")
+    .populate("groupAdmin", "-password");
+
+  if (!addedToGroup) {
+    throw new Error("Chat Not Found");
+  } else {
+   return addedToGroup;
+  }
+}
+})
+return data
+}
+
+
+
+// @desc    Remove user from Group
+// @route   PUT /api/chat/groupremove
+// @access  Protected
+export const removeFromGroup = async (req) => {
+  
+  const { chatId, userId } = req.body;
+
+  // check if the requester is admin
+
+  const removed =  Chat.findByIdAndUpdate(
+    chatId,
+    {
+      $pull: { users: userId },
+    },
+    {
+      new: true,
+    }
+  )
+    .populate("users", "-password")
+    .populate("groupAdmin", "-password");
+
+  if (!removed) {
+    throw new Error("Chat Not Found");
+  } else {
+    return removed;
+  }
+}
