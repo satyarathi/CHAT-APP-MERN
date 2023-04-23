@@ -1,0 +1,27 @@
+.container{
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+}
+
+.item{
+    width: 70vw;
+    height: 100vh;
+    background-color:darkslateblue;
+}
+.left{
+    align-items: center;
+    width: 60vw;
+    height: 90vh;
+    justify-content: center;
+    margin-top: 7%;
+
+ }  
+.right{
+    width: 30vw;
+    height: 100vh;
+    color: beige;
+    justify-content: right;
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;  
+    background-color: rgb(72, 61, 139);
+} 
