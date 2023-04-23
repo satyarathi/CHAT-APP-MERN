@@ -51,3 +51,24 @@ export const accessChat = async (req, res) => {
       }
     }
   };
+
+//@description     fetch  Chat
+//@route           Get /api/chat/
+//@access          Protected
+export const fetchChat = async(req, res) => {
+  console.log("game",req.body.user);
+  var data = Chat.find({users: { $eq: req.body.user}})
+  .populate("users", "-password")
+  .populate("groupAdmin", "-password")
+  .populate("latestMessage")
+  .sort({ updatedAt: -1})
+  .then(async(results) =>{
+    results = await User.populate(results,{
+      path: "latestMessage.sender",
+      select: "fullname pic email"
+    });
+    console.log("results", results);
+    return results;
+  })
+  return data
+}
