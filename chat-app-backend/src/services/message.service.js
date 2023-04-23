@@ -36,3 +36,18 @@ export const sendMessage = async (req, res) => {
       throw new Error(error.message);
     }
   };
+
+  
+//@description     Get all Messages
+//@route           GET /api/Message/:chatId
+//@access          Protected
+export const allMessages = async ( chatId) => {
+
+  console.log("chatid:", chatId);
+  
+    const messages = await Message.find({ chat: chatId })
+      .populate("sender", "fullname pic email")
+      .populate("chat");
+   
+      return messages;
+};
