@@ -72,3 +72,64 @@ export const fetchChat = async(req, res) => {
   })
   return data
 }
+
+//@description     Create 
+//@route           Post /api/chat/group
+//@access          Protected
+export const createGroupChat = async(req) =>{
+  
+  if(!req.body.users || !req.body.name){
+    throw new error("Fill all the deitails")
+  }
+
+  var users = JSON.parse(req.body.users);
+
+  if(users.length < 2){
+    throw new Error("More than 2 users are required")
+  }
+
+  users.push(req.body.user);
+  console.log("users:",users, "admin:",req.body.user);
+
+  try {
+    const groupChat = await Chat.create({
+      chatName: req.body.name,
+      users: users,
+      isGroupChat: true,
+      groupAdmin: req.body.user
+    });
+
+    const fullGroupChat = await Chat.findOne({ _id: groupChat._id })
+    .populate("users", "-password")
+    .populate("groupAdmin", "-password");
+
+  return fullGroupChat;
+  } catch (error) {
+    throw new Error
+  }
+}
+
+// @desc    Rename Group
+// @route   PUT /api/chat/rename
+// @access  Protected
+export const renameGroupChat = async (req) => {
+  const { chatId, chatName } = req.body;
+
+  const updatedChat = await Chat.findByIdAndUpdate(
+    chatId,
+    {
+      chatName: chatName,
+    },
+    {
+      new: true
+    }
+  )
+    .populate("users", "-password")
+    .populate("groupAdmin", "-password");
+
+  if (!updatedChat) {
+    throw new Error("Chat Not Found");
+  } else {
+   return updatedChat;
+  }
+};
