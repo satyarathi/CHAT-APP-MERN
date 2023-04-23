@@ -7,4 +7,7 @@ const router = express.Router();
 //route to send chat
 router.post('/', userAuth, messageController.sendMessage);
 
+// route to fetch chat
+router.get('/:chatId', userAuth, messageController.allMessages);
+
 export default router;
