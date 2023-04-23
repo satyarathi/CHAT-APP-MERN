@@ -1,0 +1,122 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+   }
+    
+   body {
+       font-family: 'Raleway', sans-serif;
+   }
+    
+   .container {
+    width: 100%;
+    height: 100vh;
+    background-size: cover;
+    background-repeat: no-repeat;
+    display: flex;
+   }
+
+   .image-box{
+    margin-top: 3%;
+    width: 50%;
+    height: 90%;
+   }
+    
+   .form {
+    position: absolute;
+    top: 14%;
+    right: 4%;
+    width: 40%;
+    height: 70%;
+   }
+    
+   .form-section {
+
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 70%;
+    /* height: 50%; */
+   }
+    
+   .text-box {
+    margin-bottom: 20px;
+   }
+
+   .profile-pic{
+    /* margin-right: 800px; */
+    margin-top: 30px;
+    margin-bottom: 50px;
+    text-align: start;
+   }
+    
+   .control {
+    width: 100%;
+    padding: 12px;
+    border-top: 0;
+    border-left: 0;
+    border-right: 0;
+    border-bottom: 1px solid silver;
+    border-radius: 0;
+    transition: all 2s;
+  
+   }
+    
+   .control:focus {
+    outline: none;
+    border-bottom-color: blue;
+   }
+    
+   .btn {
+    display: block;
+    width: 100%;
+    padding: 13px;
+    border-radius: 30px;
+    background-image: linear-gradient(to right, #08CCFD, #0379FD);
+    color: #fff;
+    border:0;
+    font-size: 19px;
+    font-weight: 200;
+    /* box-shadow: 5px 5px 5px 0px rgba(99, 97, 97, 0.75); */
+   }
+    
+   .m20 {
+    margin-top: 20px;
+    cursor: pointer;
+   }
+    
+   .link {
+    text-decoration: none;
+    color: silver;
+    font-weight: 300;
+   }
+    
+   .heading1 {
+    font-size: 25px;
+    letter-spacing: 2px;
+    font-weight: 200;
+    color: black;
+    
+   }
+
+   .heading2 {
+    font-size: 25px;
+    letter-spacing: 2px;
+    font-weight: 200;
+    color: black;
+    margin-left: 600px;
+    display: flex;
+    justify-content: space-between;
+   }
+   
+
+   @media screen and (max-width: 765px){
+    .form {
+    width: 100%;
+   }
+   .image-box{
+    display: none;
+   }
+
+   }
