@@ -10,7 +10,6 @@ function Dashboard() {
     <div>
       <div>
         <ChatPage />
-        
       </div>
     </div>
   );
