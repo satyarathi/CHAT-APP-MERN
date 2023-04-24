@@ -1,5 +1,5 @@
 import axios from 'axios';
-const url = 'http://localhost:6060/api/v1/';
+const url = 'http://localhost:5000/api/v1/';
 
 const headerConfig = {
     headers: {

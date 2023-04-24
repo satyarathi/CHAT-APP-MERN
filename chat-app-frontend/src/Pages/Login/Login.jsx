@@ -3,14 +3,19 @@ import Image from "../../image/chat.png";
 import Button from "@mui/material/Button";
 import { loginUser } from "../../Services/userService";
 import TextField from '@mui/material/TextField';
+import { useNavigate } from "react-router-dom";
 
 const emailRegex = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/;
-const passwordRegex = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/;
+const passwordRegex = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$/;
 
-function Login(props) {
-    const clickSignup = () => {
-        props.listenToLoginPage();
-    }
+function Login() {
+
+  const navigate = useNavigate();
+
+  const HandlePage=()=>{
+    navigate('/signup')
+  }
+    
         const [loginObj, setloginObj] = React.useState({
             email: "",
             password: "",
@@ -74,7 +79,8 @@ function Login(props) {
                 localStorage.setItem("token", response.data.data);
 
                 console.log("token", response.data.data);
-               
+                navigate('/dashboard')
+                return response;
               }
             
     }
@@ -130,7 +136,7 @@ function Login(props) {
                     style={{cursor:'pointer'}}
                   />    
               </div>
-              <div className="Login-box"><h4>New to App? <Button onClick={clickSignup} style={{cursor:'pointer'}}>Sign Up</Button> </h4></div>
+              <div className="Login-box"><h4>New to App? <Button onClick={HandlePage} style={{cursor:'pointer'}}>Sign Up</Button> </h4></div>
              
             </form>
           </div>

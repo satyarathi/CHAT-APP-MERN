@@ -4,16 +4,19 @@ import Image from "../../image/chat.png";
 import Button from "@mui/material/Button";
 import { registerUser } from "../../Services/userService";
 import TextField from '@mui/material/TextField';
+import { useNavigate } from "react-router-dom";
 
 const emailRegex = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/;
 const passwordRegex = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$/;
 const nameReg = /\b([A-ZÀ-ÿ][-,a-z. ']+[ ]*)+/;
 
-function SignUp(props) {
+function SignUp() {
 
-  const clickLogin = () => {
-    props.listenToSignUpPage();
-  };
+  const navigate =useNavigate();
+
+  const HandlePage=()=>{
+    navigate('/login')
+  }
  
   const [signupObj, setSignupObj] = React.useState({
     fullname: "",
@@ -91,6 +94,7 @@ function SignUp(props) {
       console.log("prepared for backend",signupObj)
       let response = await registerUser(signupObj);
       console.log(response);
+      navigate('/login')
     }
   }
   return (
@@ -151,7 +155,7 @@ function SignUp(props) {
                     style={{cursor:'pointer'}}
                   />   
               </div>
-              <div className="Login-box"><h4>Already have an Account? <Button onClick={clickLogin} style={{cursor:'pointer'}}>Login</Button> </h4></div>
+              <div className="Login-box"><h4>Already have an Account? <Button onClick={HandlePage} style={{cursor:'pointer'}}>Login</Button> </h4></div>
              
             </form>
           </div>

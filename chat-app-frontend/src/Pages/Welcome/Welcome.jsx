@@ -1,8 +1,15 @@
 import React from "react";
 import './Welcome.css';
 import background from "../../image/Background.jpg";
+import { useNavigate } from "react-router-dom";
 
 function Welcome(){
+
+    const navigate=useNavigate();
+
+    const HandlePage=()=>{
+        navigate('/login')
+    }
     return(
         <div className="container">
             <div className="item">
@@ -13,7 +20,7 @@ function Welcome(){
             <div style={{marginRight:'60px'}}>
             <h1>Welcome<br /> To <br /> Chat<br /> App</h1>
             <div style={{width:'100%',height:'20%'}}>
-            <button style={{width:'180px',height:'50px',fontFamily:'cursive',cursor:'pointer',borderRadius:'5px'}}>Start chat with a friend...</button>
+            <button style={{width:'180px',height:'50px',fontFamily:'cursive',cursor:'pointer',borderRadius:'5px'}} onClick={HandlePage}>Start chat with a friend...</button>
             </div>
             </div>
             
