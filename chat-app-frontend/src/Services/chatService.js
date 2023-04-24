@@ -1,5 +1,5 @@
 import axios from 'axios';
-const url = 'http://localhost:5000/api/v1/';
+const url = 'http://localhost:5001/api/v1/';
 
 const headerConfig = {
     headers: {
@@ -11,6 +11,5 @@ export const fetchChats = async () =>{
     const data = await axios.get(url + "chat/", headerConfig)
     console.log(data);
     console.log('token;', headerConfig );
-    return data;
-    
+    return data; 
 }

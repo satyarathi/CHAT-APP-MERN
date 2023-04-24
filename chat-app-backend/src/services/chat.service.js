@@ -56,8 +56,8 @@ export const accessChat = async (req, res) => {
 //@route           Get /api/chat/
 //@access          Protected
 export const fetchChat = async(req, res) => {
-  console.log("game",req.body.userId);
-  var results = await Chat.find({users: { $eq: req.body.userId}})
+  console.log("game",req.body.user);
+  var results = await Chat.find({users: { $eq: req.body.user}})
   .populate("users", "-password")
   .populate("groupAdmin", "-password")
   .populate("latestMessage")
