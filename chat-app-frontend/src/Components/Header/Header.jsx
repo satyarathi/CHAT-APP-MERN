@@ -2,7 +2,7 @@ import { Box, Button, Input } from '@mui/material';
 import * as React from 'react';
 import Avatar from '@mui/material/Avatar';
 import Drawer from '@mui/material/Drawer';
-
+import SearchIcon from '@mui/icons-material/Search';
 
 
 
@@ -25,12 +25,12 @@ function Header() {
     <div>
     {[''].map((anchor) => (
         <React.Fragment key={anchor}>
-        <Box display={'flex'} justifyContent={'space-between'} alignItems={'center'}  style={{ backgroundColor:"rgb(133 53 118)"}} height={'12vh'} >
+        <Box display={'flex'} justifyContent={'space-between'} alignItems={'center'}  style={{ backgroundColor:"darkslateblue"}} height={'12vh'} >
             <Button variant='ghost' onClick={toggleDrawer(anchor, true)}>{anchor}
-              S <Input style={{border:"none", padding:"2px", marginRight:"10px" ,color:"white"}} placeholder='search user'> </Input>
+              <SearchIcon /> <Input style={{border:"none", padding:"2px", marginRight:"10px" ,color:"white"}} placeholder='search user'> </Input>
             </Button>
             <div style={{marginRight:"120px", marginLeft:"20px"}}>
-            <h1 style={{fontFamily:"fantasy", fontWeight:"bold" , color:"rgb(79 10 93)"}}>SANDESHA</h1>
+            <h1 style={{fontFamily:"cursive", fontWeight:"bold" , color:"white",letterSpacing:'2px'}}>Chat App</h1>
             </div>
             <div style={{marginRight:"30px", marginTop:"10px"}}>
             <Avatar  />
