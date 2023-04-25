@@ -76,7 +76,7 @@ function Login() {
                   "response------------------------------------------>",
                   response
                 );
-                localStorage.setItem("token", response.data.data);
+                localStorage.setItem("token",JSON.stringify(response.data.data));
 
                 console.log("token", response.data.data);
                 navigate('/dashboard')

@@ -7,9 +7,9 @@ import MyChat from '../../Components/MyChats/MyChat';
 
 function ChatPage() {
 
-    useEffect(() =>{
-        fetchChats();
-    }, [])
+    // useEffect(() =>{
+    //     fetchChats();
+    // }, [])
 
   return (
     <div style={{width: "100%"}}>

@@ -7,6 +7,7 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import AuthRoute from './routes/authRoute';
 import ProtectedRoute from './routes/protectedRoute';
 import Chatpage from './Pages/ChatPage/ChatPage';
+import ChatProvider from './Context/ChatProvider';
 
 function App() {
   return (
@@ -14,6 +15,7 @@ function App() {
      {/* <Dashboard /> */}
      
         <BrowserRouter>
+        <ChatProvider>
         <Routes>
           <Route
             path="/"
@@ -52,6 +54,7 @@ function App() {
           />
           {/* <Route path="/chats" element={<Chatpage />} /> */}
         </Routes>
+        </ChatProvider>
       </BrowserRouter>
     
     
