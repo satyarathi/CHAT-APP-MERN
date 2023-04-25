@@ -3,10 +3,15 @@ import * as React from 'react';
 import Avatar from '@mui/material/Avatar';
 import Drawer from '@mui/material/Drawer';
 import SearchIcon from '@mui/icons-material/Search';
+import { useContext } from 'react';
+import { ChatContext } from '../../Context/ChatProvider';
 
 
 
 function Header() {
+  const user = useContext(ChatContext);
+  console.log("UserData:",user);
+
     const [state, setState] = React.useState({   
         left: false,
       });
@@ -33,7 +38,7 @@ function Header() {
             <h1 style={{fontFamily:"cursive", fontWeight:"bold" , color:"white",letterSpacing:'2px'}}>Chat App</h1>
             </div>
             <div style={{marginRight:"30px", marginTop:"10px"}}>
-            <Avatar  />
+            <Avatar>{user.user.fullname[0]}</Avatar>
             </div>
             <Drawer style={{display:"flex" }}
             anchor={anchor}
