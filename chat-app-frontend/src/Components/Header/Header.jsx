@@ -5,10 +5,13 @@ import Drawer from '@mui/material/Drawer';
 import SearchIcon from '@mui/icons-material/Search';
 import { useContext } from 'react';
 import { ChatContext } from '../../Context/ChatProvider';
+import { useNavigate } from 'react-router-dom';
 
 
 
 function Header() {
+  const navigate = useNavigate();
+
   const user = useContext(ChatContext);
   console.log("UserData:",user);
 
@@ -24,7 +27,10 @@ function Header() {
         setState({ ...state, [anchor]: open });
       };
     
-
+      const HandleLogout = () =>{
+        localStorage.removeItem("token");
+        navigate('/login');
+      }
   return (
     <>
     <div>
@@ -37,8 +43,10 @@ function Header() {
             <div style={{marginRight:"120px", marginLeft:"20px"}}>
             <h1 style={{fontFamily:"cursive", fontWeight:"bold" , color:"white",letterSpacing:'2px'}}>Chat App</h1>
             </div>
-            <div style={{marginRight:"30px", marginTop:"10px"}}>
+            <div style={{marginRight:"40px", marginTop:"10px",display:'flex',justifyContent:"space-between",width:'150px'}}>
             <Avatar>{user.user.fullname[0]}</Avatar>
+            <Button style={{backgroundColor:'white',height:'35px',color:'black',fontFamily:'cursive'}} onClick={HandleLogout}>Logout</Button>
+
             </div>
             <Drawer style={{display:"flex" }}
             anchor={anchor}
