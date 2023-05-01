@@ -6,7 +6,7 @@ const headerConfig = {
       Authorization: `Bearer ${localStorage.getItem("token")}`,
     },
   };
-
+////
 export const fetchChats = async () =>{  
     const data = await axios.get(url + "chat/", headerConfig)
     console.log(data);
