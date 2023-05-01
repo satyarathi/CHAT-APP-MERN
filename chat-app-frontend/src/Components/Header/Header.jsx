@@ -6,10 +6,15 @@ import SearchIcon from '@mui/icons-material/Search';
 import { useContext } from 'react';
 import { ChatContext } from '../../Context/ChatProvider';
 import { useNavigate } from 'react-router-dom';
+import { useState } from 'react';
 
 
 
 function Header() {
+  const [search, setSearch] = useState("");
+  const [loading, setLoading] = useState(false);
+  const [searchResult, setSearchResult] = React.useState([]);
+  
   const navigate = useNavigate();
 
   const user = useContext(ChatContext);
@@ -27,6 +32,7 @@ function Header() {
         setState({ ...state, [anchor]: open });
       };
     
+      
       const HandleLogout = () =>{
         localStorage.removeItem("token");
         navigate('/login');
